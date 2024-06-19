@@ -1,0 +1,26 @@
+databaseChangeLog:
+  - changeSet:
+      author: Islam
+      id: 2
+      changes:
+        - createTable:
+            tableName: projects_employees
+            columns:
+              - column:
+                  name: employee_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_employee_id
+                    references: employees
+              - column:
+                  name: project_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_project_id
+                    references: projects
+        - addPrimaryKey:
+            tableName: projects_employees
+            constraintName: pk_projects_employees
+            columnNames: project_id,employee_id
