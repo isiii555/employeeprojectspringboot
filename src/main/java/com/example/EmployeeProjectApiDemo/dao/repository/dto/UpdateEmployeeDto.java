@@ -1,17 +1,15 @@
 package com.example.EmployeeProjectApiDemo.dao.repository.dto;
 
-import com.example.EmployeeProjectApiDemo.dao.repository.entity.ProjectEntity;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.util.List;
 
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Setter
-@Getter
-@Data
-public class EmployeeDto {
+public class UpdateEmployeeDto {
     private String firstName;
 
     private String lastName;
@@ -21,6 +19,4 @@ public class EmployeeDto {
     private String jobTitle;
 
     private LocalDate hireDate;
-
-    private List<ProjectEntity> projects;
 }

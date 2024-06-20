@@ -1,6 +1,7 @@
 package com.example.EmployeeProjectApiDemo.dao.repository.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -47,7 +48,7 @@ public class ProjectEntity {
     @JoinTable(name = "projects_employees",
     joinColumns = { @JoinColumn(name = "project_id") },
     inverseJoinColumns = { @JoinColumn(name = "employee_id") })
-    @JsonBackReference
+    @JsonIgnore
     private List<EmployeeEntity> employees;
 
 

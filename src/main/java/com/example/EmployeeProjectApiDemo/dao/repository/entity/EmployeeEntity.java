@@ -49,7 +49,19 @@ public class EmployeeEntity {
     @JoinTable(name = "projects_employees",
             joinColumns = { @JoinColumn(name = "employee_id") },
             inverseJoinColumns = { @JoinColumn(name = "project_id") })
-    @JsonManagedReference
     private List<ProjectEntity> projects;
+
+    public void addProject(ProjectEntity project) {
+        if (projects == null) {
+            projects = new ArrayList<>();
+        }
+        projects.add(project);
+    }
+
+    public void removeProject(ProjectEntity project) {
+        if (projects != null) {
+            projects.remove(project);
+        }
+    }
 
 }
