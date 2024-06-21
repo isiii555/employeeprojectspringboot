@@ -4,12 +4,13 @@ import com.example.EmployeeProjectApiDemo.dao.repository.dto.EmployeeDto;
 import com.example.EmployeeProjectApiDemo.dao.repository.dto.UpdateEmployeeDto;
 import com.example.EmployeeProjectApiDemo.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/api")
+@RequestMapping("/api/v1/employees")
 public class EmployeeController {
     private EmployeeService employeeService;
 
@@ -18,33 +19,39 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
 
-    @GetMapping(path = "/employees")
+    @GetMapping("/")
+    @ResponseStatus(HttpStatus.OK)
     public List<EmployeeDto> getAll() {
         return employeeService.getAll();
     }
 
-    @GetMapping(path = "/employees/{employeeId}")
+    @GetMapping("/{employeeId}")
+    @ResponseStatus(HttpStatus.OK)
     public EmployeeDto getById(@PathVariable int employeeId) {
         return employeeService.getById(employeeId);
     }
 
-    @PostMapping(path = "/employees")
+    @PostMapping("/")
+    @ResponseStatus(HttpStatus.CREATED)
     public EmployeeDto add(@RequestBody UpdateEmployeeDto updateEmployeeDto) {
         return employeeService.add(updateEmployeeDto);
     }
 
-    @PutMapping(path = "/employees/{employeeId}")
+    @PutMapping("/{employeeId}")
+    @ResponseStatus(HttpStatus.OK)
     public UpdateEmployeeDto update(@PathVariable int employeeId, @RequestBody UpdateEmployeeDto employee) {
-        return employeeService.update(employeeId,employee);
+        return employeeService.update(employeeId, employee);
     }
 
-    @PutMapping(path = "/employees/{employeeId}/projects/{projectId}")
+    @PatchMapping("/{employeeId}/projects/{projectId}")
+    @ResponseStatus(HttpStatus.OK)
     public EmployeeDto assignProjectToEmployee(@PathVariable int employeeId, @PathVariable int projectId) {
-        return employeeService.assignProject(projectId,employeeId);
+        return employeeService.updateProject(projectId, employeeId);
     }
 
-    @DeleteMapping(path = "/employees/{employeeId}/projects/{projectId}")
-    public EmployeeDto deleteProjectFromEmployee(@PathVariable int employeeId, @PathVariable int projectId) {
-        return employeeService.deleteProject(projectId,employeeId);
-    }
+//    @PatchMapping("/employees/{employeeId}/projects/{projectId}")
+//    public EmployeeDto deleteProjectFromEmployee(@PathVariable int employeeId, @PathVariable int projectId) {
+//        return employeeService.deleteProject(projectId,employeeId);
+//    }
+
 }
