@@ -1,7 +1,6 @@
 package com.example.EmployeeProjectApiDemo.service;
 
 import com.example.EmployeeProjectApiDemo.dao.repository.EmployeeRepository;
-import com.example.EmployeeProjectApiDemo.dao.repository.ProjectRepository;
 import com.example.EmployeeProjectApiDemo.dao.repository.dto.EmployeeDto;
 import com.example.EmployeeProjectApiDemo.dao.repository.dto.UpdateEmployeeDto;
 import com.example.EmployeeProjectApiDemo.exception.NotFoundException;
@@ -31,7 +30,8 @@ public class EmployeeService {
     }
 
     public EmployeeDto getById(int id) {
-        var result = employeeRepository.findById(id).orElseThrow(() -> new NotFoundException("Employee not found with id : " + id));
+        var result = employeeRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("EMPLOYEE_NOT_FOUND_" + id));
         return employeeMapper.employeeToEmployeeDto(result);
     }
 

@@ -1,7 +1,12 @@
 package com.example.EmployeeProjectApiDemo.dao.repository.dto;
 
 import com.example.EmployeeProjectApiDemo.dao.repository.entity.ProjectEntity;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -11,6 +16,7 @@ import java.util.List;
 @Setter
 @Getter
 @Data
+@Builder
 public class EmployeeDto {
     private String firstName;
 
